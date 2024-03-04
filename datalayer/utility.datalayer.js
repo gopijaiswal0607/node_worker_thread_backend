@@ -7,7 +7,9 @@ const PolicyInfo = require('../models/policyinfo.model');
 const DBAction = require('./dbaction.datalayer')
 class UtilityDatalayer {
     static insertAllInformation=async(data)=>{
-        // insert user 
+        //Note: We can use transaction in mongoose to perform this operation
+        
+        // insert user
         await DBAction.inserIntoDb(data.user,User);
         // insert policyinfo
         await DBAction.inserIntoDb(data.policyInfo,PolicyInfo);
