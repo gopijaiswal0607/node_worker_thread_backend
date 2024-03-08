@@ -8,19 +8,24 @@ const DBAction = require('./dbaction.datalayer')
 class UtilityDatalayer {
     static insertAllInformation=async(data)=>{
         //Note: We can use transaction in mongoose to perform this operation
-        
         // insert user
-        await DBAction.inserIntoDb(data.user,User);
+        let InitUserCollection = new DBAction(User);
+        await InitUserCollection.insertIntoDb(data.user);
         // insert policyinfo
-        await DBAction.inserIntoDb(data.policyInfo,PolicyInfo);
+        let InitpolicyInfoCollection = new DBAction(PolicyInfo);
+        await InitpolicyInfoCollection.insertIntoDb(data.policyInfo);
         // insert user Account
-        await DBAction.inserIntoDb(data.userAccount,UserAccount);
+        let InituserAccountCollection = new DBAction(UserAccount);
+        await InituserAccountCollection.insertIntoDb(data.userAccount,UserAccount);
         //insert agent info
-        await DBAction.inserIntoDb(data.agent,Agent);
+        let InitagentCollection = new DBAction(Agent);
+        await InitagentCollection.insertIntoDb(data.agent,Agent);
         // insert policyCategory info'
-        await DBAction.inserIntoDb(data.policyCategory,PolicyCategory);
+        let InitpolicyCategoryCollection = new DBAction(PolicyCategory);
+        await InitpolicyCategoryCollection.insertIntoDb(data.policyCategory);
         // insert policycarrier info
-        await DBAction.inserIntoDb(data.policyCarrier,PolicyCarrier);
+        let InitpolicyCarrierCollection = new DBAction(PolicyCarrier);
+        await InitpolicyCarrierCollection.insertIntoDb(data.policyCarrier);
     }
 }
 module.exports = UtilityDatalayer

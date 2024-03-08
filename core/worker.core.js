@@ -21,6 +21,7 @@ const UtilityDatalayer= require('../datalayer/utility.datalayer')
           resolve('File uploaded and data saved successfully');
         } catch (error) {
           // Reject with error message
+          console.error("Error while streaming the file",error);
           reject(error);
         }
       });

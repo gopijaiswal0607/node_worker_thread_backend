@@ -1,6 +1,6 @@
 const express = require('express');
 const http = require('http');
-
+const { checkCPUUsageInterval }= require("./core/cpuUsesCheck.core");
 const app = express();
 const server = http.createServer(app);
 const chalk = require('chalk');
@@ -15,4 +15,5 @@ require('./startup/routes')(app);
 // running the app on the port
 server.listen(port, () => {
     console.log(chalk.bold.green(`Listening on port ${port} . . .`));
+    checkCPUUsageInterval()
   });
