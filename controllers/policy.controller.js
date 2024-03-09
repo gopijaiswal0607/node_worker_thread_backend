@@ -7,7 +7,7 @@ class policyController{
         {
             return res.send(500).json({success:false,msg:'userName is not valid'});
         }
-        const policyInformationOfuser = PolicyCore.getPolicyInfomation()
+        const policyInformationOfuser = await PolicyCore.getPolicyInfomation()
        res.send(200).json({data:policyInformOuser,success:true})
      }
      catch(e)
@@ -18,7 +18,7 @@ class policyController{
     static getAggregatedPolicy = async(req,res)=>{
         try{
           // call core function to get this information
-          const result = PolicyCore.getAggPolicyByUser();
+          const result = await PolicyCore.getAggPolicyByUser();
           res.send(200).json({success:true,data:result})
         }
         catch(e)

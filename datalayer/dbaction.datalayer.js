@@ -8,6 +8,7 @@ class DBAction{
    try{
     const initCollection = new this.Collection(data);
     await initCollection.save();
+    return true;
    }
    catch(e){
       throw(e);
