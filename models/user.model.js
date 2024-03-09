@@ -36,18 +36,18 @@ const userSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    default: NA,
+    default: "",
   },
   user_type: {
     type: String,
-    default: NA,
+    default: "",
   }
 }, {
   timestamps: true,
   strict: false,
 });
 
-jobQueueSchema.index({ user_id: 1 });
+userSchema.index({ user_id: 1 });
 
 
 module.exports = mongoose.model('User', userSchema, 'User');

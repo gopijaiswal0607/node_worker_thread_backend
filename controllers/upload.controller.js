@@ -1,21 +1,23 @@
 const multer = require('multer');
 const csv = require('csv-parser');
+const path = require('path');
+
+// const filepath = require('../core/worker.core')
 const fs = require('fs');
 // const UploadCore= require('../core/worker.core')
 // Set up multer for file upload
-const upload = multer({ dest: 'uploads/' });
 const { Worker } = require('worker_threads');
 class uploadController{
     static upload = async(req,res)=>{
         try {
             // Access the uploaded file from req.file
-            const file = req.file; 
+            const file = req.files.file; 
             // Check if file exists
             if (!file) {
               return res.status(400).json({ error: 'No file uploaded' });
             }
-            const worker = new Worker('../core/worker.core', {
-              workerData: { filePath: file.path }
+            const worker = new Worker(path.resolve(__dirname, '../core/worker.core'), {
+              workerData: { fileContent: file.data }
             });
         
             // Listen for messages from the worker thread

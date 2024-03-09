@@ -1,5 +1,6 @@
 const csv = require('csv-parser');
 const fs = require('fs');
+const stream = require('stream');
 const { parentPort, workerData } = require('worker_threads');
 const UtilityCore = require('./utility.core')
 const UtilityDatalayer= require('../datalayer/utility.datalayer')
@@ -8,7 +9,9 @@ const UtilityDatalayer= require('../datalayer/utility.datalayer')
   processFileData = () => {
   return new Promise((resolve, reject) => {
     const data = [];
-    const fileStream = fs.createReadStream(workerData.filePath)
+    // const fileStream = fs.createReadStream(workerData.fileContent)
+    const bufferStream = new stream.PassThrough();
+    bufferStream.end(workerData.fileContent)
       .pipe(csv())
       .on('data', (row) => {
         // Save each row of data into the data array
@@ -40,5 +43,6 @@ processFileData().then((message) => {
   })
   .catch((error) => {
     // Send error message to parent thread
+    console.error("Error in process",error)
     parentPort.postMessage({ success: false, error: error.message });
   });

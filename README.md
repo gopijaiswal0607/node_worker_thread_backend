@@ -36,3 +36,7 @@ Task 2:
 1) Track real-time CPU utilization of the node server and on 70% usage restart the server.
 
 2) Create a post-service that takes the message, day, and time in body parameters and it inserts that message into DB at that particular day and time.
+
+
+Header 
+agent	userType	policy_mode	producer	policy_number	premium_amount_written	premium_amount	policy_type	company_name	category_name	policy_start_date	policy_end_date	csr	account_name	email	gender	firstname	city	account_type	phone	address	state	zip	dob	primary	Applicant ID	agency_id	hasActive ClientPolicy

@@ -20,6 +20,6 @@ const UsersAccountSchema = new mongoose.Schema({
   strict: false,
 });
 
-AgentSchema.index({ account_id: 1 });
+UsersAccountSchema.index({ account_id: 1 });
 
 module.exports = mongoose.model('UsersAccount', UsersAccountSchema, 'UsersAccount');
